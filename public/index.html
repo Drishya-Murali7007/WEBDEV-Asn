@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secure Connect</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="shell">
+    <header><div><p class="eyebrow">Secure Connect Communication Platform </p><h1>Secure Connect</h1><p class="muted">Private notes and real-time communication</p></div><span id="status" class="status">Not signed in</span></header>
+    <section class="panel" id="auth-panel">
+      <div class="tabs"><button class="tab active" data-mode="login">Login</button><button class="tab" data-mode="signup">Sign up</button></div>
+      <form id="auth-form">
+        <div id="username-wrap" class="hidden"><label>Username</label><input id="username" autocomplete="username" /></div>
+        <label>Email</label><input id="email" type="email" required autocomplete="email" />
+        <label>Password</label><input id="password" type="password" required minlength="6" autocomplete="current-password" />
+        <button class="primary" type="submit" id="auth-submit">Login</button>
+      </form>
+      <p id="auth-message" class="message"></p>
+    </section>
+    <section id="app-panel" class="hidden">
+      <div class="toolbar panel"><div><strong id="welcome"></strong><p class="muted" id="role"></p></div><button id="logout" class="secondary">Log out</button></div>
+      <div class="columns">
+        <section class="panel">
+          <h2>Your notes</h2>
+          <form id="note-form">
+            <label>Title</label><input id="note-title" required maxlength="100" />
+            <label>Content</label><textarea id="note-content" required rows="4"></textarea>
+            <button class="primary">Add note</button>
+          </form>
+          <p id="note-message" class="message"></p><div id="notes"></div>
+        </section>
+        <section class="panel">
+          <h2>Live chat</h2>
+          <label>Room</label><input id="room" value="general" maxlength="40" />
+          <button id="join" class="secondary">Join room</button>
+          <div id="chat-log" aria-live="polite"></div>
+          <form id="chat-form" class="chat-form"><input id="chat-input" placeholder="Write a message..." maxlength="500" required /><button class="primary">Send</button></form>
+          <p id="chat-message" class="message"></p>
+        </section>
+      </div>
+    </section>
+    <footer>Passwords are hashed on the server.... Notes are private to each account</footer>
+  </main>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
